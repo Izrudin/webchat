@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import { signup } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import './registerpage.css';
+
 
 /**
 * @author

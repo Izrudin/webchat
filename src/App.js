@@ -5,6 +5,7 @@ import HomePage from './containers/HomePage/HomePage.js'
 import LoginPage from './containers/LoginPage/LoginPage.js';
 import RegisterPage from './containers/RegisterPage/RegisterPage.js';
 import PrivateRoute from './components/PrivateRoute';
+import ProfilePage from './containers/ProfilePage/ProfilePage.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoggedInUser } from './actions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,7 @@ function App() {
         <PrivateRoute path="/" exact component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={RegisterPage} />
+        <PrivateRoute path="/profile"  component={ProfilePage} />
       </Router>
     </div>
   );
