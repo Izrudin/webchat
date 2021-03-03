@@ -29,9 +29,9 @@ const Header = (props) => {
   
         </div>
         <Link to="/profile">
-            <img src="https://www.kxan.com/wp-content/uploads/sites/40/2019/07/MGN_1280x720_80820P00-PDQMR.jpg" className="displayUserPic" />
             <div style={{ color: '#fff', fontWeight: 'bold'}} className="userName">
               {auth.authenticated ? `${auth.firstName} ${auth.lastName}` : ''}
+              <p>Profile</p>
             </div>
           </Link>
           <ul className="menu">

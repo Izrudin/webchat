@@ -14,7 +14,7 @@ const User = (props) => {
         <img src="https://www.kxan.com/wp-content/uploads/sites/40/2019/07/MGN_1280x720_80820P00-PDQMR.jpg" alt="" />
       </div>
       <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between', margin: '0 10px'}}>
-         <span style={{fontWeight: 500}}>{user.firstName} {user.lastName}</span>
+         <span style={{fontWeight: 600}}>{user.firstName} {user.lastName}</span>
         <span className={user.isOnline ? `onlineStatus` : `onlineStatus off`}></span>
       </div>
     </div>
@@ -100,7 +100,7 @@ const HomePage = (props) => {
         </div>
         <div className="chatArea">
             
-            <div className="chatHeader"> 
+            <div className="chatHeader">
             {
               chatStarted ? chatUser : ''
             }
