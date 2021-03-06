@@ -38,12 +38,18 @@ const ProfilePage = () => {
                                         </div>
                                         <div className="col-sm-6">
                                             <p className="m-b-10 f-w-600">Last Name</p>
+                                            <Link to="/updatename">
+                                                <img src="https://image.flaticon.com/icons/png/512/61/61456.png" alt="" width="12" height="12" className="editIcon editIconName"/>
+                                            </Link>
                                             <p className="text-muted f-w-400" id="lastname">{auth.lastName}</p>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-sm-6">
                                             <p className="m-b-10 f-w-600">Email</p>
+                                            <Link to="/updatemail">
+                                                <img src="https://image.flaticon.com/icons/png/512/61/61456.png" alt="" width="12" height="12" className="editIcon"/>
+                                            </Link>
                                             <h6 className="text-muted f-w-400">{auth.email}</h6>
                                         </div>
                                         <div className="col-sm-6">
@@ -55,25 +61,25 @@ const ProfilePage = () => {
                                         </div>
                                             <img src={auth.image} alt="" className="profile-image"/>
                                             <input type="file" id="imageInput" onChange={(e)=> setFile(e.target.files[0])}/>
-                                            <button className="btn btn-primary btn-block" onClick={uploadPic}>Upload</button>
+                                            <button className="btn btn-primary btn-block uploadImgBtn" onClick={uploadPic}>Upload</button>
                                         </div>
-                                    <div className='profilepageButtons'>
+                                    {/* <div className='profilepageButtons'> */}
                                     <Link to="/updatepassword">
-                                        <button className="btn btn-primary btn-block"> 
+                                        <button className="btn btn-primary btn-block editPassBtn"> 
                                             Update Password
                                         </button>
                                     </Link>
-                                    <Link to="/updatemail">
+                                    {/* <Link to="/updatemail">
                                         <button className="btn btn-primary btn-block">
                                             Update Email
                                         </button>
-                                    </Link>
-                                    <Link to="/updatename">
+                                    </Link> */}
+                                    {/* <Link to="/updatename">
                                         <button className="btn btn-primary btn-block">
                                             Update Name
                                         </button>
-                                    </Link>
-                                    </div>
+                                    </Link> */}
+                                    {/* </div> */}
                                 </div>
                             </div>
                         </div>
