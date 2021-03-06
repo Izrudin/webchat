@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './header.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../actions';
+import firebase from 'firebase';
+import { logout, getUserImage} from '../../actions';
 
 /**
 * @author
@@ -13,11 +14,14 @@ const Header = (props) => {
 
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const user = firebase.auth().currentUser;
 
   return(
     <header className="header">
         <div style={{display: 'flex'}}>
-          <div className="logo">Web Messenger</div>
+          <Link to={'/'}>
+            <div className="logo">Web Messenger</div>
+          </Link>
             
             {
               !auth.authenticated ? 
@@ -31,7 +35,6 @@ const Header = (props) => {
         <Link to="/profile">
             <div style={{ color: '#fff', fontWeight: 'bold'}} className="userName">
               {auth.authenticated ? `${auth.firstName} ${auth.lastName}` : ''}
-              <p>Profile</p>
             </div>
           </Link>
           <ul className="menu">

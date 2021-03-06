@@ -53,27 +53,6 @@ const LoginPage = (props) => {
 
                 <button type="submit" className="btn btn-primary btn-block">Log In</button>
             </form>
-          {/* <form onSubmit={userLogin}>
-            
-            <input 
-              name="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
-
-            <input 
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
-            <div>
-              <button>Login</button>
-            </div>
-          </form> */}
       </div>
     </Layout>
    )

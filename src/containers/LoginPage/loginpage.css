@@ -1,5 +1,8 @@
 .loginContainer,
-.registerContainer {
+.registerContainer,
+.updateProfileContainer,
+.updateEmailContainer,
+.updateNameContainer {
     width: 450px;
     margin: auto;
     background: #ffffff;

@@ -14,17 +14,17 @@ span {
   width: 30%;
   height: 100%;
   overflow-x: hidden;
-  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   background-color: #1b5ff9;
 }
 
 .singleUserElement {
   background-color: #1b5ff9;
-  border-bottom: 0.5px solid black;
+  border-bottom: 0.5px solid #ccc;
 }
 
 .singleUserElement:hover {
-  background-color: #1167b1;
+  background-color: #1946db;
 }
 
 .chatArea {
@@ -44,6 +44,7 @@ span {
   font-weight: bold;
   font-family: sans-serif;
 }
+
 .chatControls {
   display: flex;
   position: fixed;
@@ -51,9 +52,11 @@ span {
   height: 50px;
   bottom: 0;
 }
+
 .chatControls textarea {
   width: 90%;
 }
+
 .chatControls button {
   width: 10%;
 }
@@ -124,11 +127,11 @@ span {
   border-top: 1px solid rgba(0, 0, 0, 25);
   margin-bottom: 6px;
   margin-right: 50px;
-  padding: 10px;
+  padding: 10px;  
+  outline: none;
 }
 
 #sendMessageBtn {
-  background: url("/resources/images/sendMessage.png");
   width: 10%;
   height: 85%;
   background: #f3f0f1;
@@ -139,8 +142,15 @@ span {
   border: solid black 2px;
   text-align: center;
   cursor: pointer;
+  outline: none;
 }
 
 #sendMessageBtn:hover {
   cursor: pointer;
+  background-color: #ccc;
+}
+
+#deleteMessageBtn {
+  width: 3%;
+  height: 3%;
 }

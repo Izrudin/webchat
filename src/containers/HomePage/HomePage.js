@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './homepage.css';
 import Layout from '../../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage } from '../../actions';
+import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage, updateConversation } from '../../actions';
 
 const User = (props) => {
 
@@ -11,9 +11,9 @@ const User = (props) => {
   return (
     <div onClick={() => onClick(user)} className="displayName">
       <div className="displayPic">
-        <img src="https://www.kxan.com/wp-content/uploads/sites/40/2019/07/MGN_1280x720_80820P00-PDQMR.jpg" alt="" />
+        <img src={user.image? user.image : 'https://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png'} alt="" />
       </div>
-      <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between', margin: '0 10px'}}>
+      <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between', margin: '25px 40px'}}>
          <span style={{fontWeight: 600}}>{user.firstName} {user.lastName}</span>
         <span className={user.isOnline ? `onlineStatus` : `onlineStatus off`}></span>
       </div>
@@ -112,7 +112,7 @@ const HomePage = (props) => {
                     <div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
                       <div className="message">
                         <p className="messageStyle">{con.message}</p>
-                        <input type="button" value="x" onClick={deleteMessage(con.id)}></input>
+                        <input src="https://static.thenounproject.com/png/1290073-200.png"  id="deleteMessageBtn"  type="image" onClick={deleteMessage(con.id)}/> 
                       </div>
                   </div>)
                   : null

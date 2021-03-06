@@ -6,6 +6,9 @@ import LoginPage from './containers/LoginPage/LoginPage.js';
 import RegisterPage from './containers/RegisterPage/RegisterPage.js';
 import PrivateRoute from './components/PrivateRoute';
 import ProfilePage from './containers/ProfilePage/ProfilePage.js';
+import UpdatePassword from './containers/UpdatePassword/UpdatePassword.js';
+import UpdateEmail from './containers/UpdateEmail/UpdateEmail.js'
+import UpdateName from './containers/UpdateName/UpdateName';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoggedInUser } from './actions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +16,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 function App() { 
 
   const auth = useSelector(state => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if(!auth.authenticated){
@@ -26,9 +29,12 @@ function App() {
       <Router>
         {/* only logged in user can access this home route */}
         <PrivateRoute path="/" exact component={HomePage} />
+        <PrivateRoute path="/profile" exact component={ProfilePage} />
+        <PrivateRoute path="/updatepassword" exact component={UpdatePassword} />
+        <PrivateRoute path="/updatemail" exact component={UpdateEmail} />
+        <PrivateRoute path="/updatename" exact component={UpdateName} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={RegisterPage} />
-        <PrivateRoute path="/profile"  component={ProfilePage} />
       </Router>
     </div>
   );

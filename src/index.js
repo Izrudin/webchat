@@ -20,8 +20,9 @@ const firebaseConfig = {
   measurementId: "G-Y8NJ4PN0M2"
 };
 
-
 firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
 
 window.store = store;
 
@@ -38,3 +39,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export {
+  storage, firebase as default
+}

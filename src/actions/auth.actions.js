@@ -28,6 +28,7 @@ export const signup = (user) => {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     uid: data.user.uid,
+                    image: '',
                     createdAt: new Date(),
                     isOnline: true
                 })
@@ -142,7 +143,6 @@ export const logout = (uid) => {
             isOnline: false
         })
         .then(() => {
-
             auth()
             .signOut()
             .then(() => {
@@ -154,11 +154,9 @@ export const logout = (uid) => {
                 console.log(error);
                 dispatch({ type: `${authConstanst.USER_LOGOUT}_FAILURE`, payload: { error } })
             })
-
         })
         .catch(error => {
             console.log(error); 
         })
     }
 }
-

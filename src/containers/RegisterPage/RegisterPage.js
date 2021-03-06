@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { signup } from '../../actions';
+import { signup, handleUpload } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ const RegisterPage = (props) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
@@ -41,7 +42,6 @@ const RegisterPage = (props) => {
       <div className="registerContainer">
         <form onSubmit={registerUser}>
                 <h3>Sign Up</h3>
-
                 <div className="form-group">
                     <label>First name</label>
                     <input name="firstName" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="First name" />
@@ -59,9 +59,8 @@ const RegisterPage = (props) => {
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} type="text" className="form-control" placeholder="Enter password" />
+                    <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Enter password" />
                 </div>
-
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
             </form>
       </div>

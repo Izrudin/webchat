@@ -6,11 +6,11 @@ const initState = {
     email: '',
     authenticating: false,
     authenticated: false,
+    image: '',
     error: null
 }
 
 export default (state = initState, action) => {
-
 
     switch(action.type){
 
@@ -49,7 +49,6 @@ export default (state = initState, action) => {
                 error: action.payload.error
             }
             break;
-
     }
 
 

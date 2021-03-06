@@ -1,5 +1,7 @@
-import { userConstants } from "./constants";
-import { firestore } from 'firebase';
+import { authConstanst, userConstants } from "./constants";
+import firebase, { auth, firestore } from 'firebase';
+import { storage } from '../index'
+
 
 export const getRealtimeUsers = (uid) => {
 
@@ -97,4 +99,157 @@ export const deleteMessage = (conversationid) => {
             console.error("Error deleting the message. Log: ", error)
         })
     }
+}
+
+export const updateConversation = (uid, newMessage) => {
+    return async() => {
+        const db = firestore();
+        db.collection('conversations')
+        .doc(uid)
+        .update({
+            message: newMessage
+        })
+        .then((data)=>{
+            console.log("Response from db: "+data);
+        }).catch((error)=>{
+            console.log("Couldnt update message. Error: "+error);
+        })
+    }
+}
+
+export const updateUserProfile = (user) => {
+    
+    return async dispatch => {
+        dispatch({type: `${authConstanst.USER_LOGIN}_REQUEST`});
+        auth()
+        .signInWithEmailAndPassword(user.email, user.password)
+        .then((data)=>{
+            const db = firestore();
+            db.collection('users')
+            .doc(data.user.uid)
+            .update({
+                firstName: user.firstName,
+                lastName: user.lastName
+            })
+        }).catch((error)=>{
+            console.log("Couldn't update user. Error: ", error)
+        })
+    }
+}
+
+export const updateUserPassword = (cpass, npass) => {
+    return async()=>{
+        try{
+            var user = auth().currentUser;
+            const cred = firebase.auth.EmailAuthProvider.credential(user.email, cpass);
+            user.reauthenticateWithCredential(cred)
+            .then(()=>{
+                var user = firebase.auth().currentUser;
+                user.updatePassword(npass)
+                .then(()=>{
+                    console.log('Password updated!');
+                    localStorage.clear();
+                    window.location.reload();
+                })
+                .catch((updatePasswordError)=>{
+                    console.log('Couldnt update password. Try again. Error: ', updatePasswordError);
+                })
+            })
+            .catch((userReauthenticationError)=>{
+                console.log('Couldnt re-authenticate user. Error: ', userReauthenticationError);
+            });
+        }   
+        catch(error){
+            console.log('Wrong password! Error: ', error)
+        }
+    }
+}
+
+export const updateUserEmail = (cpass, email) => {
+    return async()=>{
+        try{
+            var user = auth().currentUser;
+            const cred = firebase.auth.EmailAuthProvider.credential(user.email, cpass);
+            user.reauthenticateWithCredential(cred)
+            .then(()=>{
+                user.updateEmail(email)
+                .then(()=>{
+                    console.log('Email updated to '+email+'.');
+                    localStorage.clear();
+                    window.location.reload();
+                })
+                .catch((updateError)=>{
+                console.log('Couldnt update email. Error: ', updateError)
+                })
+            })
+            .catch((authenticationerror)=>{
+                console.log('Couldnt reauthenticate user. Error: ', authenticationerror)
+            })
+        }
+        catch(error){
+            console.log('Wrong password! Error: ', error)
+        }
+        
+    }
+}
+
+export const updateDisplayName = (uid, fname, lname) => {
+    return async()=>{
+        var user = auth().currentUser;
+        user.updateProfile({
+            displayName: fname + " " +lname
+        })
+        .then(()=>{
+            const db = firestore();
+            db.collection('users')
+            .doc(uid)
+            .update({
+                firstName: fname,
+                lastName: lname
+            })
+            .then(()=>{
+                localStorage.clear();
+                window.location.reload();
+            })
+            .catch((updateDbError)=>{
+                console.log('Couldnt save data to DB. Error: ', updateDbError)
+            })
+        })
+        .catch((updateDisplaynameError)=>{
+            console.log('Couldnt update displayname. Error: ', updateDisplaynameError)
+        })
+    }
+}
+
+export const handleUpload = (uid, file) => {
+    return async()=>{
+        const uploadTask = storage.ref(`images/${uid}/profile`).put(file);
+        uploadTask.on("state_changed", console.log, console.error, () => {
+          storage
+            .ref(`images/${uid}`)
+            .child("profile")
+            .getDownloadURL()
+            .then(url => {
+                var user = auth().currentUser;
+                const db = firestore();
+                db.collection('users').doc(uid).update({
+                    image: url
+                })
+                user.image = url;
+                })
+            });
+    }
+}
+
+export const getUserImage = (uid) =>{
+    const uploadTask = storage.ref(`images/${uid}/profile`);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+        storage
+        .ref(`images/${uid}`)
+        .child("profile")
+        .getDownloadURL()
+        .then((url)=>{
+            return url;
+        })
+    })
 }
