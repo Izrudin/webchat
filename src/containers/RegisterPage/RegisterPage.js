@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { signup, handleUpload } from '../../actions';
+import { signup } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import './registerpage.css';
 
 
 /**
@@ -10,14 +11,13 @@ import { Redirect } from 'react-router-dom';
 * @function RegisterPage
 **/
 
-const RegisterPage = (props) => {
+const RegisterPage = () => {
 
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
@@ -44,22 +44,22 @@ const RegisterPage = (props) => {
                 <h3>Sign Up</h3>
                 <div className="form-group">
                     <label>First name</label>
-                    <input name="firstName" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="First name" />
+                    <input name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="First name" />
                 </div>
 
                 <div className="form-group">
                     <label>Last name</label>
-                    <input name="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" placeholder="Last name" />
+                    <input name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" placeholder="Last name" />
                 </div>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="form-control" placeholder="Enter email" />
+                    <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="form-control" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Enter password" />
+                    <input name="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Enter password" />
                 </div>
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
             </form>

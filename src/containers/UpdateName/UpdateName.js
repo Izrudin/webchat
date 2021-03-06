@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../components/Layout/Layout';
 import { updateDisplayName } from '../../actions'
+import './updatename.css';
 
 
-const UpdateName = (props) => {
+const UpdateName = () => {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const UpdateName = (props) => {
 
     const updatename=(e)=>{
         e.preventDefault();
-        dispatch(updateDisplayName(auth.uid, firstname, lastname))     
+        dispatch(updateDisplayName(auth.uid, firstname, lastname));
     }
 
     return(
@@ -24,12 +25,12 @@ const UpdateName = (props) => {
 
                     <div className="form-group">
                         <label>First Name</label>
-                        <input name="firstname" type="text" value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="New First name" />
+                        <input name="firstname" value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="New First name" />
                     </div>
 
                     <div className="form-group">
                         <label>Last Name</label>
-                        <input name="newname" type="text" value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" placeholder="New Last name" />
+                        <input name="newname" value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" placeholder="New Last name" />
                     </div>
                     <button type="submit" className="btn btn-primary btn-block">Update Name</button> 
                 </form>

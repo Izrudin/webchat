@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
 * @function LoginPage
 **/
 
-const LoginPage = (props) => {
+const LoginPage = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

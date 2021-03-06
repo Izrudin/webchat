@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './header.css';
 import { useSelector, useDispatch } from 'react-redux';
-import firebase from 'firebase';
-import { logout, getUserImage} from '../../actions';
+import { logout } from '../../actions';
 
 /**
 * @author
@@ -14,7 +13,6 @@ const Header = (props) => {
 
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const user = firebase.auth().currentUser;
 
   return(
     <header className="header">

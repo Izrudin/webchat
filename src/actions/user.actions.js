@@ -196,6 +196,15 @@ export const updateUserEmail = (cpass, email) => {
 export const updateDisplayName = (uid, fname, lname) => {
     return async()=>{
         var user = auth().currentUser;
+        var names = [];
+        if(fname === ''){
+            names = user.displayName.split(" ");
+            fname = names[0];
+        }
+        if(lname === ''){
+            names = user.displayName.split(" ");
+            lname = names[1]
+        }
         user.updateProfile({
             displayName: fname + " " +lname
         })

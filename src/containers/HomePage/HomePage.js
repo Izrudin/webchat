@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './homepage.css';
 import Layout from '../../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage, updateConversation } from '../../actions';
+import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage } from '../../actions';
 
 const User = (props) => {
 
@@ -112,7 +112,7 @@ const HomePage = (props) => {
                     <div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
                       <div className="message">
                         <p className="messageStyle">{con.message}</p>
-                        <input src="https://static.thenounproject.com/png/1290073-200.png"  id="deleteMessageBtn"  type="image" onClick={deleteMessage(con.id)}/> 
+                        {con.user_uid_1 === auth.uid ? <input src="https://static.thenounproject.com/png/1290073-200.png" alt="" id="deleteMessageBtn"  type="image" onClick={deleteMessage(con.id)}/> : null }
                       </div>
                   </div>)
                   : null
