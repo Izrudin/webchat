@@ -87,12 +87,14 @@ span {
 }
 
 .messageStyle {
-  background: skyblue;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
   display: inline-block;
   padding: 5px 10px;
   border-radius: 10px;
   margin: 5px;
-  display: inline-block;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .messageSections {
@@ -116,7 +118,17 @@ span {
   box-shadow: 0 0 0 0;
 }
 
-#sendMessageInput {
+.messageBubble {
+  font-family: arial, sans-serif;
+  font-size: 1.1em;
+  color: #fff;
+  position: relative;
+  background: #a53d38;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sendMessageInput {
   display: grid;
   width: 85%;
   height: 85%;
@@ -131,7 +143,7 @@ span {
   outline: none;
 }
 
-#sendMessageBtn {
+.sendMessageBtn {
   width: 10%;
   height: 85%;
   background: #f3f0f1;
@@ -145,13 +157,15 @@ span {
   outline: none;
 }
 
-#sendMessageBtn:hover {
+.sendMessageBtn:hover {
   cursor: pointer;
   background-color: #ccc;
 }
 
-#deleteMessageBtn {
-  width: 3%;
-  height: 3%;
-  
+.deleteMessageBtn {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin: -7px;
+  outline: none;
 }

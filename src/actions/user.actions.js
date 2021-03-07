@@ -1,19 +1,13 @@
 import { authConstanst, userConstants } from "./constants";
 import firebase, { auth, firestore } from 'firebase';
-import { storage } from '../index'
-
+import { storage } from '../index';
 
 export const getRealtimeUsers = (uid) => {
-
-    //console.log('uid', uid)
-
     return async (dispatch) => {
-
         dispatch({ type: `${userConstants.GET_REALTIME_USERS}_REQUEST` });
 
         const db = firestore();
         const unsubscribe = db.collection("users")
-        //.where("uid", "!=", uid)
         .onSnapshot((querySnapshot) => {
             const users = [];
             querySnapshot.forEach(function(doc) {
@@ -21,8 +15,6 @@ export const getRealtimeUsers = (uid) => {
                     users.push(doc.data());
                 }
             });
-            //console.log(users);
-
             dispatch({ 
                 type: `${userConstants.GET_REALTIME_USERS}_SUCCESS`,
                 payload: { users }
@@ -33,7 +25,7 @@ export const getRealtimeUsers = (uid) => {
 }
 
 export const updateMessage = (msgObj) => {
-    return async dispatch => {
+    return async()=> {
         
         const db = firestore();
         var conversationObj = db.collection('conversations').doc();
@@ -93,10 +85,10 @@ export const deleteMessage = (conversationid) => {
         db.collection('conversations')
         .doc(conversationid)
         .delete()
-        .then((data)=>{
-            console.log('Message deleted successfully! Conv ID: ', data)
-        }).catch((error)=>{
-            console.error("Error deleting the message. Log: ", error)
+        .then(()=>{
+            console.log('Message deleted successfully!');
+        }).catch(()=>{
+            console.error('Error deleting the message.')
         })
     }
 }
@@ -109,16 +101,15 @@ export const updateConversation = (uid, newMessage) => {
         .update({
             message: newMessage
         })
-        .then((data)=>{
-            console.log("Response from db: "+data);
+        .then(()=>{
+            console.log('Updated');
         }).catch((error)=>{
-            console.log("Couldnt update message. Error: "+error);
+            console.log('Couldnt update message. Error: '+error);
         })
     }
 }
 
 export const updateUserProfile = (user) => {
-    
     return async dispatch => {
         dispatch({type: `${authConstanst.USER_LOGIN}_REQUEST`});
         auth()
@@ -218,7 +209,9 @@ export const updateDisplayName = (uid, fname, lname) => {
             })
             .then(()=>{
                 localStorage.clear();
-                window.location.reload();
+                window.location.href="#";
+                 window.location.reload();
+
             })
             .catch((updateDbError)=>{
                 console.log('Couldnt save data to DB. Error: ', updateDbError)

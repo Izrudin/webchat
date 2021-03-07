@@ -96,7 +96,6 @@ const HomePage = (props) => {
               );
             }) : null
           }
-
         </div>
         <div className="chatArea">
             
@@ -109,10 +108,14 @@ const HomePage = (props) => {
                 {
                   chatStarted ? 
                   user.conversations.map(con =>
-                    <div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
-                      <div className="message">
-                        <p className="messageStyle">{con.message}</p>
-                        {con.user_uid_1 === auth.uid ? <input src="https://static.thenounproject.com/png/1290073-200.png" alt="" id="deleteMessageBtn"  type="image" onClick={deleteMessage(con.id)}/> : null }
+                    <div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left'}}>
+                      <div className="messageContent">
+                        <div className = "message">
+                          <p className="messageStyle" style={{ 
+                              background: con.user_uid_1 === auth.uid ? "#b9defc" : "#59b1fc", textAlign: "center", maxWidth:"500px", position: "relative"
+                            }}>{con.message}</p>
+                            {con.user_uid_1 === auth.uid ? <input type="image" onClick={deleteMessage(con.id)} className="deleteMessageBtn" src="https://static.thenounproject.com/png/1290073-200.png" alt="" /> : null }
+                        </div>
                       </div>
                   </div>)
                   : null
@@ -121,9 +124,9 @@ const HomePage = (props) => {
             {
               chatStarted ? 
               <div className="chatControls">
-                <input type="button" value="Send" id="sendMessageBtn" onClick={submitMessage}/>
+                <input type="button" value="Send" className="sendMessageBtn" onClick={submitMessage}/>
                 <input type="text" 
-                  id="sendMessageInput"
+                  className="sendMessageInput"
                   value={message}
                   onKeyPress={(event) => {
                     if(event.key === 'Enter') {

@@ -63,23 +63,11 @@ const ProfilePage = () => {
                                             <input type="file" id="imageInput" onChange={(e)=> setFile(e.target.files[0])}/>
                                             <button className="btn btn-primary btn-block uploadImgBtn" onClick={uploadPic}>Upload</button>
                                         </div>
-                                    {/* <div className='profilepageButtons'> */}
-                                    <Link to="/updatepassword">
-                                        <button className="btn btn-primary btn-block editPassBtn"> 
-                                            Update Password
-                                        </button>
-                                    </Link>
-                                    {/* <Link to="/updatemail">
-                                        <button className="btn btn-primary btn-block">
-                                            Update Email
-                                        </button>
-                                    </Link> */}
-                                    {/* <Link to="/updatename">
-                                        <button className="btn btn-primary btn-block">
-                                            Update Name
-                                        </button>
-                                    </Link> */}
-                                    {/* </div> */}
+                                        <Link to="/updatepassword">
+                                            <button className="btn btn-primary btn-block editPassBtn"> 
+                                                Update Password
+                                            </button>
+                                        </Link>
                                 </div>
                             </div>
                         </div>
