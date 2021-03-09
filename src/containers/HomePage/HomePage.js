@@ -11,7 +11,7 @@ const User = (props) => {
   return (
     <div onClick={() => onClick(user)} className="displayName">
       <div className="displayPic">
-        <img src={user.image? user.image : 'https://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png'} alt="" />
+        <img src={user.image? user.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1uO9yM0Gp_F2e2oAGZT5dBwsG8yf-WhG-KWYAJVEgsTSx0VAJHUmEv7pO8u9Y8CsXZNM&usqp=CAU'} alt="" />
       </div>
       <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between', margin: '25px 40px'}}>
          <span style={{fontWeight: 600}}>{user.firstName} {user.lastName}</span>
@@ -23,8 +23,8 @@ const User = (props) => {
 
 const HomePage = (props) => {
 
-  const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
+  const dispatch = useDispatch(); 
+  const auth = useSelector(state => state.auth); 
   const user = useSelector(state => state.user);
   const [chatStarted, setChatStarted] = useState(false);
   const [chatUser, setChatUser] = useState('');
@@ -56,8 +56,9 @@ const HomePage = (props) => {
     setChatUser(`${user.firstName} ${user.lastName}`)
     setUserUid(user.uid);
 
-    console.log(user);  
-
+    console.log("user youre chatting with: ",user);  
+    console.log("auth user: ",auth);
+    
     dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }));
   }
 

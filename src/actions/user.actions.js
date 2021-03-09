@@ -54,11 +54,9 @@ export const getRealtimeConversations = (user) => {
         .where('user_uid_1', 'in', [user.uid_1, user.uid_2])
         .orderBy('createdAt', 'asc')
         .onSnapshot((querySnapshot) => {
-
             const conversations = [];
 
             querySnapshot.forEach(doc => {
-
                 if(
                     (doc.data().user_uid_1 === user.uid_1 && doc.data().user_uid_2 === user.uid_2)
                     || 
@@ -105,25 +103,6 @@ export const updateConversation = (uid, newMessage) => {
             console.log('Updated');
         }).catch((error)=>{
             console.log('Couldnt update message. Error: '+error);
-        })
-    }
-}
-
-export const updateUserProfile = (user) => {
-    return async dispatch => {
-        dispatch({type: `${authConstanst.USER_LOGIN}_REQUEST`});
-        auth()
-        .signInWithEmailAndPassword(user.email, user.password)
-        .then((data)=>{
-            const db = firestore();
-            db.collection('users')
-            .doc(data.user.uid)
-            .update({
-                firstName: user.firstName,
-                lastName: user.lastName
-            })
-        }).catch((error)=>{
-            console.log("Couldn't update user. Error: ", error)
         })
     }
 }
@@ -180,7 +159,6 @@ export const updateUserEmail = (cpass, email) => {
         catch(error){
             console.log('Wrong password! Error: ', error)
         }
-        
     }
 }
 
@@ -223,8 +201,8 @@ export const updateDisplayName = (uid, fname, lname) => {
     }
 }
 
-export const handleUpload = (uid, file) => {
-    return async()=>{
+export const uploadPicture = (uid, file) => {
+    return async(dispatch)=>{
         const uploadTask = storage.ref(`images/${uid}/profile`).put(file);
         uploadTask.on("state_changed", console.log, console.error, () => {
           storage
@@ -234,24 +212,12 @@ export const handleUpload = (uid, file) => {
             .then(url => {
                 var user = auth().currentUser;
                 const db = firestore();
-                db.collection('users').doc(uid).update({
-                    image: url
-                })
+                db.collection('users').doc(uid).update({image: url})
                 user.image = url;
-                })
-            });
+            })
+            .catch((uploadError)=>{
+                console.log('Couldnt update database with picture. Error: ', uploadError)
+            })
+        });
     }
-}
-
-export const getUserImage = (uid) =>{
-    const uploadTask = storage.ref(`images/${uid}/profile`);
-    uploadTask.on("state_changed", console.log, console.error, () => {
-        storage
-        .ref(`images/${uid}`)
-        .child("profile")
-        .getDownloadURL()
-        .then((url)=>{
-            return url;
-        })
-    })
 }

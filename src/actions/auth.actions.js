@@ -4,13 +4,9 @@ import { authConstanst } from './constants';
 // Register a user (signup because its a reserved word in firebase)
 
 export const signup = (user) => {
-
     return async (dispatch) => {
-
         const db = firestore();
-
         dispatch({type: `${authConstanst.USER_LOGIN}_REQUEST`});
-
         auth()
         .createUserWithEmailAndPassword(user.email, user.password)
         .then(data => {
@@ -21,7 +17,6 @@ export const signup = (user) => {
                 displayName: name
             })
             .then(() => {
-                //if you are here, it means its updated successfully
                 db.collection('users')
                 .doc(data.user.uid)
                 .set({
@@ -33,7 +28,6 @@ export const signup = (user) => {
                     isOnline: true
                 })
                 .then(() => {
-                    //successful creation of user
                     const loggedInUser = {
                         firstName: user.firstName,
                         lastName: user.lastName,
@@ -52,7 +46,7 @@ export const signup = (user) => {
                     dispatch({ 
                         type: `${authConstanst.USER_LOGIN}_FAILURE`,
                         payload: { error }
-                      });
+                    });
                 });
             });
         })

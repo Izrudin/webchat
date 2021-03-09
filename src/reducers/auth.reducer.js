@@ -36,6 +36,12 @@ export default (state = initState, action) => {
                 error: action.payload.error
             }
             break;
+        case `${authConstanst.USER_PICTURE}'_SUCCESS`:
+            state = {
+                ...state,
+                image: action.payload.user.image
+            }
+            break;
         case `${authConstanst.USER_LOGOUT}_REQUEST`:
             break;
         case `${authConstanst.USER_LOGOUT}_SUCCESS`:
@@ -46,11 +52,9 @@ export default (state = initState, action) => {
         case `${authConstanst.USER_LOGOUT}_FAILURE`:
             state = {
                 ...state,
-                error: action.payload.error
+               error: action.payload.error
             }
             break;
     }
-
-
     return state;
 }

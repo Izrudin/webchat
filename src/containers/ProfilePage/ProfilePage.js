@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './profilepage.css';
 import { Link } from 'react-router-dom';
 import Layout from "../../components/Layout/Layout.jsx"
-import { handleUpload } from '../../actions/user.actions';
+import { uploadPicture } from '../../actions/user.actions';
 
 const ProfilePage = () => {
     const auth = useSelector(state => state.auth);
@@ -12,7 +12,7 @@ const ProfilePage = () => {
 
     const uploadPic =(e) =>{
         e.preventDefault();
-        dispatch(handleUpload(auth.uid, file));
+        dispatch(uploadPicture(auth.uid, file));
     }
 
     return (

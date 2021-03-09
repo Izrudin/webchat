@@ -43,7 +43,7 @@ const LoginPage = () => {
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter email" />
+                    <input name="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter email"/>
                 </div>
 
                 <div className="form-group">
