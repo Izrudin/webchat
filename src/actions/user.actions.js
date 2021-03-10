@@ -76,6 +76,24 @@ export const getRealtimeConversations = (user) => {
     }
 }
 
+export const getLastMessage = (reciever, sender) =>{
+    return async() =>{
+        const db = firestore();
+        db.collection('conversations')
+        .where('user_uid_1', "in", [reciever, sender])
+        .orderBy('createdAt', 'asc')
+        .onSnapshot((querySnapshot) => {
+            const lastMessage = '';
+
+            querySnapshot.forEach(doc=>{
+                if(doc.data().user_uid_1 === sender && doc.data().user_uid_2 === reciever){
+
+                }
+            })
+        })
+    }
+}
+
 export const deleteMessage = (conversationid) => {
 
     return async() => {

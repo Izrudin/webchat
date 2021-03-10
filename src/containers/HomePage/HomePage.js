@@ -3,6 +3,7 @@ import './homepage.css';
 import Layout from '../../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage } from '../../actions';
+import { auth } from 'firebase';
 
 const User = (props) => {
 
@@ -15,7 +16,9 @@ const User = (props) => {
       </div>
       <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between', margin: '25px 40px'}}>
          <span style={{fontWeight: 600}}>{user.firstName} {user.lastName}</span>
+         <span style={{fontWeight: 600}}></span>
         <span className={user.isOnline ? `onlineStatus` : `onlineStatus off`}></span>
+        
       </div>
     </div>
   );
@@ -124,7 +127,7 @@ const HomePage = (props) => {
             </div>
             {
               chatStarted ? 
-              <div className="chatControls">
+              <div className="chatControls"> 
                 <input type="button" value="Send" className="sendMessageBtn" onClick={submitMessage}/>
                 <input type="text" 
                   className="sendMessageInput"
