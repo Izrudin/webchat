@@ -1,4 +1,4 @@
-import { authConstanst, userConstants } from "./constants";
+import { userConstants } from "./constants";
 import firebase, { auth, firestore } from 'firebase';
 import { storage } from '../index';
 

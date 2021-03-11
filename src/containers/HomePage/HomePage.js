@@ -3,7 +3,6 @@ import './homepage.css';
 import Layout from '../../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRealtimeUsers, updateMessage, getRealtimeConversations, deleteMessage } from '../../actions';
-import { auth } from 'firebase';
 
 const User = (props) => {
 
