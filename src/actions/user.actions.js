@@ -87,7 +87,7 @@ export const getLastMessage = (reciever, sender) =>{
 
             querySnapshot.forEach(doc=>{
                 if(doc.data().user_uid_1 === sender && doc.data().user_uid_2 === reciever){
-
+                    // it is not finished yettt
                 }
             })
         })
